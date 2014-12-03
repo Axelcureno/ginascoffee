@@ -1,0 +1,50 @@
+<?php
+//La base de datos se llama clientes, y mi tabala es starsdelcliente. Los campos que puse fueron ID autoincremental y estrellas.
+
+include 'database.php';
+$mysqli = mysqli_connect($host, $usuario, $contraseÃ±a, $db);
+if (mysqli_connect_errno($mysqli)){
+	echo "FAIL!".mysqli_connect_error();
+	}
+	else{
+		echo "";
+		}
+?>
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Documento sin tÃ­tulo</title>
+</head>
+
+<body>
+<?php		
+$totaldecuenta = 1455;
+$starcount = 0;
+$bronze = "Bronze Membership";
+$silver = "Silver Membership";
+$gold = "Gold Membership";
+
+for ($i = 50; $i <= $totaldecuenta; $i=$i+50) {
+    $starcount = $starcount + 1;
+}
+
+echo "Numero de estrellas: ";
+echo $starcount; 
+$consulta="insert into starsdelcliente (estrellas) values('$starcount')";
+$res = mysqli_query($mysqli, $consulta);
+?>
+<br>
+<?php
+if ($starcount <= 10){
+	echo $bronze;
+	}
+if ($starcount > 10 && $starcount < 21){
+	echo $silver;
+	}
+if ($starcount >= 21){
+	echo $gold;
+	}
+?>
+</body>
+</html>
